@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ol class="navbar-nav nav">
+                <li><a href=""><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li><a href=""><span class="glyphicon glyphicon-phone-alt"></span> Contact us</a></li>
+                <li><a href="">About</a></li>
+            </ol>
+            <ul class="navbar-nav nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-fire"></span> Sign up</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div style="background-color: cornflowerblue;" class="container-fluid">
+        <div class="row">
+            <div style="background-color:red;" class="col-sm-4">
+            </div>
+            <div style="background-color:palegreen;" class="col-sm-4">
+                <form class="form-horizontal">
+                    <div class="form-groups">
+                        <label for="FormName">Name</label>
+                        <input type="text" placeholder="Enter the name" class="form-control">
+                    </div>
+                    <div class="form-groups">
+                        <label for="Password">Password</label>
+                        <input type="password" placeholder="Enter the password" class="form-control">
+
+                    </div>
+                    <div class="form-groups">
+                        <label for="Address">Address</label>
+                        <textarea type="text" placeholder="Enter your address" class="form-control input-lg"></textarea>
+
+                    </div>
+                    <div class="form-groups">
+                        <label for="Contact">Contact No</label>
+                        <input type="number" placeholder="Enter the phoneno" class="form-control">
+                    </div>
+                    <div class="checkbox">
+                        <h5><strong>Courses</h5>
+                        <label for="choice">
+                            <input type="checkbox" values="DAC" class="checkbox">DAC
+                        </label>
+                        <label for="choice">
+                            <input type="checkbox" values="DMC" class="checkbox">DMC
+                        </label>
+                        <label for="choice">
+                            <input type="checkbox" values="DBDA" class="checkbox">DBDA
+                        </label>
+                        <label for="choice">
+                            <input type="checkbox" values="DAI" class="checkbox">DAI
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <h5><strong>Gender</h5>
+                        <label>
+                            <input type="radio" class="radio" name="Gender">Male
+                        </label>
+                        <label>
+                            <input type="radio" class="radio" name="Gender">Female
+                        </label>
+                        <label>
+                            <input type="radio" class="radio" name="Gender">Both
+                        </label>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">Cities</button>
+                        <ul class="dropdown-menu">
+                            <li>Maharastra</li>
+                            <li>Madhya Pradesh</li>
+                            <li>Gujarat</li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <input type="file">
+                    </div>
+                </form>
+            </div>
+            <div style="background-color:palevioletred;" class="col-sm-4">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

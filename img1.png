@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TN24W8K');</script>
+<!-- End Google Tag Manager -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+	<style>
+		.wpcf7-submit{
+			display:none;
+		}
+		.recaptcha-btn{
+			display:block;
+		}
+		.grecaptcha-badge {display: none;} 
+	</style>
+	<script type="text/javascript">
+		var contactform = [];
+		var checkIfCalled = true;
+		var renderGoogleInvisibleRecaptchaFront = function() {
+			// prevent form submit from enter key
+			jQuery("input[name=_wpcf7]").attr("class","formid");
+				jQuery('.wpcf7-form').on('keyup keypress', "input", function(e) {
+				  var keyCode = e.keyCode || e.which;
+				  if (keyCode === 13) {
+					e.preventDefault();
+					return false;
+				  }
+				});
+
+			jQuery('.wpcf7-submit').each(function(index){
+
+				var checkexclude = 0;
+				var form = jQuery(this).closest('.wpcf7-form');
+				var value = jQuery(form).find(".formid").val();
+				// check form exclude from invisible recaptcha
+								if(checkexclude == 0){
+					// Hide the form orig submit button
+					form.find('.wpcf7-submit').hide();
+
+					// Fetch class and value of orig submit button
+					btnClasses = form.find('.wpcf7-submit').attr('class');
+					btnValue = form.find('.wpcf7-submit').attr('value');
+
+					// Add custom button and recaptcha holder
+
+					form.find('.wpcf7-submit').after('<input type="button" id="wpcf-custom-btn-'+index+'" class="'+btnClasses+'  recaptcha-btn recaptcha-btn-type-css" value="'+btnValue+'" title="'+btnValue+'" >');
+					form.append('<div class="recaptcha-holder" id="recaptcha-holder-'+index+'"></div>');
+					// Recaptcha rendenr from here
+					var holderId = grecaptcha.render('recaptcha-holder-'+index,{
+								'sitekey':'6LfG7HoaAAAAAGhHAcPFs7NGiO-EuupQ3Kmmfm1v',
+								'size': 'invisible',
+								'badge' : 'bottomright', // possible values: bottomright, bottomleft, inline
+								'callback' : function (recaptchaToken) {
+									//console.log(recaptchaToken);
+									var response=jQuery('#recaptcha-holder-'+index).find('.g-recaptcha-response').val();
+									//console.log(response);
+									//Remove old response and store new respone
+									jQuery('#recaptcha-holder-'+index).parent().find(".respose_post").remove();
+									jQuery('#recaptcha-holder-'+index).after('<input type="hidden" name="g-recaptcha-response"  value="'+response+'" class="respose_post">')
+									grecaptcha.reset(holderId);
+
+									if(typeof customCF7Validator !== 'undefined'){
+										if(!customCF7Validator(form)){
+											return;
+										}
+									}
+									// Call default Validator function
+									else if(contactFormDefaultValidator(form)){
+										return;
+									}
+									else{
+										// hide the custom button and show orig submit button again and submit the form
+										jQuery('#wpcf-custom-btn-'+index).hide();
+										form.find('input[type=submit]').show();
+										form.find("input[type=submit]").click();
+										form.find('input[type=submit]').hide();
+										jQuery('#wpcf-custom-btn-'+index).attr('style','');
+									}
+								}
+						},false);
+
+					// action call when click on custom button
+					jQuery('#wpcf-custom-btn-'+index).click(function(event){
+						event.preventDefault();
+						// Call custom validator function
+						if(typeof customCF7Validator == 'function'){
+							if(!customCF7Validator(form)){
+								return false;
+							}
+						}
+						// Call default Validator function
+						else if(contactFormDefaultValidator(form)){
+							return false;
+						}
+						else if(grecaptcha.getResponse(holderId) != ''){
+							grecaptcha.reset(holderId);
+						}
+						else{
+							// execute the recaptcha challenge
+							grecaptcha.execute(holderId);
+						}
+					});
+				}
+			});
+		}
+	</script><script  src="https://www.google.com/recaptcha/api.js?onload=renderGoogleInvisibleRecaptchaFront&render=explicit" async defer></script><meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v16.6.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Ranveer Brar | Official Cooking Recipe Website of Ranveer Brar</title>
+	<meta name="description" content="Ranveer Brar intends to take you on a culinary journey, exploring new places, cultures, and flavours. Let’s engage, exchange and evolve our skills and taste buds. Click to know more." />
+	<link rel="canonical" href="https://ranveerbrar.com/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Ranveer Brar | Official Cooking Recipe Website of Ranveer Brar" />
+	<meta property="og:description" content="Ranveer Brar intends to take you on a culinary journey, exploring new places, cultures, and flavours. Let’s engage, exchange and evolve our skills and taste buds. Click to know more." />
+	<meta property="og:url" content="https://ranveerbrar.com/" />
+	<meta property="og:site_name" content="Ranveer Brar" />
+	<meta property="article:modified_time" content="2021-12-08T11:01:29+00:00" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content="https://ranveerbrar.com/wp-content/uploads/2020/12/foodfables-icon.svg" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ranveerbrar.com/#website","url":"https://ranveerbrar.com/","name":"Ranveer Brar","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://ranveerbrar.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://ranveerbrar.com/#primaryimage","inLanguage":"en-US","url":"https://ranveerbrar.com/wp-content/uploads/2020/12/foodfables-icon.svg","contentUrl":"https://ranveerbrar.com/wp-content/uploads/2020/12/foodfables-icon.svg","caption":"Ranveer Brar -"},{"@type":"WebPage","@id":"https://ranveerbrar.com/#webpage","url":"https://ranveerbrar.com/","name":"Ranveer Brar | Official Cooking Recipe Website of Ranveer Brar","isPartOf":{"@id":"https://ranveerbrar.com/#website"},"primaryImageOfPage":{"@id":"https://ranveerbrar.com/#primaryimage"},"datePublished":"2020-12-02T11:08:52+00:00","dateModified":"2021-12-08T11:01:29+00:00","description":"Ranveer Brar intends to take you on a culinary journey, exploring new places, cultures, and flavours. Let\u2019s engage, exchange and evolve our skills and taste buds. Click to know more.","breadcrumb":{"@id":"https://ranveerbrar.com/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://ranveerbrar.com/"]}]},{"@type":"BreadcrumbList","@id":"https://ranveerbrar.com/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//unpkg.com' />
+<link rel='dns-prefetch' href='//stackpath.bootstrapcdn.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Ranveer Brar &raquo; Feed" href="https://ranveerbrar.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Ranveer Brar &raquo; Comments Feed" href="https://ranveerbrar.com/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ranveerbrar.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.2"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<!-- ranveerbrar.com is managing ads with Advanced Ads 1.25.1 --><script>
+			advanced_ads_ready=function(){var e,t=[],n="object"==typeof document&&document,d=n&&n.documentElement.doScroll,o="DOMContentLoaded",a=n&&(d?/^loaded|^c/:/^loaded|^i|^c/).test(n.readyState);return!a&&n&&(e=function(){for(n.removeEventListener(o,e),window.removeEventListener("load",e),a=1;e=t.shift();)e()},n.addEventListener(o,e),window.addEventListener("load",e)),function(e){a?setTimeout(e,0):t.push(e)}}();		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://ranveerbrar.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='https://ranveerbrar.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='rb-style-css'  href='https://ranveerbrar.com/wp-content/themes/ranveer-brar/style.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='rb-style-bs-css'  href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='rb-dev-style-css'  href='https://ranveerbrar.com/wp-content/themes/ranveer-brar/rb-style.css?v=333&#038;ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='rb-mobile-style-css'  href='https://ranveerbrar.com/wp-content/themes/ranveer-brar/css/mobile_menu.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='rb-hover-css'  href='https://ranveerbrar.com/wp-content/themes/ranveer-brar/css/hover.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='noto-font-css'  href='https://fonts.googleapis.com/css2?family=Noto+Serif%3Aital%2Cwght%400%2C400%3B0%2C700%3B1%2C400&#038;display=swap&#038;ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='worksans-font-css'  href='https://fonts.googleapis.com/css2?family=Work+Sans%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B1%2C400%3B1%2C500&#038;display=swap&#038;ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='slider-tiny-carousel-css-css'  href='https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='qlwapp-css'  href='https://ranveerbrar.com/wp-content/plugins/wp-whatsapp-chat/assets/frontend/css/frontend.css?ver=4.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='addtoany-css'  href='https://ranveerbrar.com/wp-content/plugins/add-to-any/addtoany.min.css?ver=1.15' type='text/css' media='all' />
+<script type='text/javascript' src='https://ranveerbrar.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/plugins/add-to-any/addtoany.min.js?ver=1.1' id='addtoany-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/plugins/cf7-invisible-recaptcha/js/cf7_invisible_recaptcha.js?ver=1.2.3' id='cf7_invisible_recaptcha_functions-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js?ver=5.8.2' id='rb-jquery-script-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js?ver=5.8.2' id='rb-jquery-ui-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/themes/ranveer-brar/js/rb-script.js?v=1&#038;ver=5.8.2' id='rb-script-js-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/themes/ranveer-brar/js/mobile_menu.js?ver=5.8.2' id='rb-mobile-js-js'></script>
+<script type='text/javascript' src='https://unpkg.com/scrollreveal@4.0.5/dist/scrollreveal.min.js?ver=5.8.2' id='rb-srreveal-script-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js?ver=5.8.2' id='rb-bs-popper-script-js'></script>
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js?ver=5.8.2' id='rb-bs-bs-script-js'></script>
+<link rel="https://api.w.org/" href="https://ranveerbrar.com/wp-json/" /><link rel="alternate" type="application/json" href="https://ranveerbrar.com/wp-json/wp/v2/pages/12" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ranveerbrar.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ranveerbrar.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.2" />
+<link rel='shortlink' href='https://ranveerbrar.com/' />
+<link rel="alternate" type="application/json+oembed" href="https://ranveerbrar.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Franveerbrar.com%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ranveerbrar.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Franveerbrar.com%2F&#038;format=xml" />
+
+<script data-cfasync="false">
+window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};
+(function(d,s,a,b){a=d.createElement(s);b=d.getElementsByTagName(s)[0];a.async=1;a.src="https://static.addtoany.com/menu/page.js";b.parentNode.insertBefore(a,b);})(document,"script");
+</script>
+		<style type="text/css">
+					.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+				</style>
+		<script async data-cfasync="false" data-minify="0" src="https://cdn-monetize.whatstheword.co/5/wordmonetize.js"></script><link rel="icon" href="https://ranveerbrar.com/wp-content/uploads/2020/12/Group-189.png" sizes="32x32" />
+<link rel="icon" href="https://ranveerbrar.com/wp-content/uploads/2020/12/Group-189.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://ranveerbrar.com/wp-content/uploads/2020/12/Group-189.png" />
+<meta name="msapplication-TileImage" content="https://ranveerbrar.com/wp-content/uploads/2020/12/Group-189.png" />
+		<style type="text/css" id="wp-custom-css">
+			.video-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.video-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}		</style>
+		            <style>
+                :root {
+                    --qlwapp-scheme-font-family:inherit;--qlwapp-scheme-font-size:18;                }
+
+                #qlwapp {
+                    font-family: var(--qlwapp-scheme-font-family);
+                }
+
+                #qlwapp {
+                    font-size: calc(var(--qlwapp-scheme-font-size)*1px);
+                }
+
+                            </style>
+        </head>
+
+<body class="home page-template page-template-page-templates page-template-home page-template-page-templateshome-php page page-id-12 wp-custom-logo no-sidebar aa-prefix-ranve-">
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TN24W8K"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-12">
+					<div class="ct-menu-section">
+						<div id="ct-logo" class="site-branding">
+							<a href="https://ranveerbrar.com/" class="custom-logo-link" rel="home" aria-current="page"><img width="54" height="33" src="https://ranveerbrar.com/wp-content/uploads/2020/12/logo-ranveer-brar.png" class="custom-logo" alt="Ranveer Brar" /></a>								<p class="site-title"><a href="https://ranveerbrar.com/" rel="home">Ranveer Brar</a></p>
+														</div><!-- .site-branding -->
+
+						<div id="ct-menu" class="header-center">
+							<nav id="site-navigation" class="main-navigation">
+								<div class="menu-main-menu-container"><ul id="primary-menu" class="menu"><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-12 current_page_item menu-item-21"><a href="https://ranveerbrar.com/" aria-current="page">Home</a></li>
+<li id="menu-item-19" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19"><a href="https://ranveerbrar.com/about/">About</a></li>
+<li id="menu-item-26" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26"><a href="https://ranveerbrar.com/recipes/">Recipes</a></li>
+<li id="menu-item-1774" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1774"><a href="https://ranveerbrar.com/shop/">Shop</a></li>
+<li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a href="https://ranveerbrar.com/blog/">Blog</a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="https://ranveerbrar.com/press/">Press</a></li>
+<li id="menu-item-1778" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1778"><a href="https://ranveerbrar.com/contact/">Contact Us</a></li>
+</ul></div>							</nav><!-- #site-navigation -->
+						</div>
+						<div id="ct-search" class="header-right">
+													<img src="https://ranveerbrar.com/wp-content/uploads/2020/12/search-icon.svg" id="search-button">	
+						<div class="overlay">
+  
+  <div class="mk-fullscreen-search-overlay" id="mk-search-overlay">
+    <a href="#" class="mk-fullscreen-close" id="mk-fullscreen-close-button"><i class="fa fa-times"></i></a>
+    <div id="mk-fullscreen-search-wrapper">
+      <form method="get" id="mk-fullscreen-searchform" action="https://ranveerbrar.com">
+        <input type="text" value="" name="s" placeholder="Search..." id="mk-fullscreen-search-input" autocomplete="off">
+        <i class="fa fa-search fullscreen-search-icon"><input value="" type="submit"></i>
+      </form>
+    </div>
+  </div>
+  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+		
+<section class="latest-recipes-section dot-grid-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="latest_recipes_outer reveal">		
+													<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/masala-lasagna-no-pasta-no-oven-%e0%a4%b5%e0%a5%87%e0%a4%9c-%e0%a4%b2%e0%a4%b8%e0%a4%be%e0%a4%a8%e0%a4%bf%e0%a4%af%e0%a4%be-%e0%a4%ac%e0%a4%bf%e0%a4%a8%e0%a4%be-%e0%a4%aa%e0%a4%be%e0%a4%b8%e0%a5%8d/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/No-oven-lasagna-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="No Oven Lasagna 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/masala-lasagna-no-pasta-no-oven-%e0%a4%b5%e0%a5%87%e0%a4%9c-%e0%a4%b2%e0%a4%b8%e0%a4%be%e0%a4%a8%e0%a4%bf%e0%a4%af%e0%a4%be-%e0%a4%ac%e0%a4%bf%e0%a4%a8%e0%a4%be-%e0%a4%aa%e0%a4%be%e0%a4%b8%e0%a5%8d/">Masala Lasagna No Pasta No Oven वेज लसानिया बिना पास्ता या ओवन</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/chicken-tikka-flaming-sizzler-%e0%a4%9a%e0%a4%bf%e0%a4%95%e0%a4%a8-%e0%a4%9f%e0%a4%bf%e0%a4%95%e0%a5%8d%e0%a4%95%e0%a4%be-%e0%a4%b8%e0%a4%bf%e0%a4%9c%e0%a4%bc%e0%a4%b2%e0%a4%b0-chicken-tikka-no-tandoo/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/chicken-tikka-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Chicken Tikka 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/chicken-tikka-flaming-sizzler-%e0%a4%9a%e0%a4%bf%e0%a4%95%e0%a4%a8-%e0%a4%9f%e0%a4%bf%e0%a4%95%e0%a5%8d%e0%a4%95%e0%a4%be-%e0%a4%b8%e0%a4%bf%e0%a4%9c%e0%a4%bc%e0%a4%b2%e0%a4%b0-chicken-tikka-no-tandoo/">Chicken Tikka Flaming Sizzler चिकन टिक्का सिज़लर Chicken Tikka no tandoor</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/strawberry-jam/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/strawberry-jam-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Strawberry Jam 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/strawberry-jam/">Strawberry jam</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/chocolate-mug-cake/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/mug-cake-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Mug Cake 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/chocolate-mug-cake/">Chocolate Mug Cake</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/japanese-fruit-crepe/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/Japanes-Fruit-Crepe-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Japanes Fruit Crepe 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/japanese-fruit-crepe/">Japanese Fruit Crepe</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/banana-chocolate-muffins/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/chocolate-banana-muffin-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Chocolate Banana Muffin 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/banana-chocolate-muffins/">Banana Chocolate Muffins</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/chocolate-chip-pan-cookies/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/pan-cookie-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Pan Cookie 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/chocolate-chip-pan-cookies/">Chocolate Chip Pan Cookies</a></h4>
+
+							</div></div>
+														<div class="latest_recipes_inner item"><div class="rb_recipe">
+								<div class="rb_thumb_wrap"> 
+								
+								<a href="https://ranveerbrar.com/recipes/grilled-chicken-in-pita-pockets/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2021/11/chicken-pita-pocket-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Chicken Pita Pocket 300x400" loading="lazy"></div>
+</a>	
+								</div>	
+								<h4><a href="https://ranveerbrar.com/recipes/grilled-chicken-in-pita-pockets/">Grilled Chicken in Pita Pockets</a></h4>
+
+							</div></div>
+							</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ff_recipes-section dot-grid-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+													<div class="foodfables_section">
+									<div class="ff_recipes_heading reveal">	
+										<img src="https://ranveerbrar.com/wp-content/uploads/2020/12/foodfables-icon.svg" title="" alt=""><h3>FoodFables</h3>
+									</div>
+									<div class="ff_posts_outer">
+										<div class="row">			
+																									<div class="col-md-6 col-sm-6"><div class="rb_recipe latest_post reveal">
+														<div class="rb_thumb_wrap"> 
+															<a href="https://ranveerbrar.com/the-many-facets-of-punjabi-cuisine-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="400" src="https://ranveerbrar.com/wp-content/uploads/2019/02/Fields-e1638981883184-300x400.jpg" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Fields E1638981883184 300x400" loading="lazy"></div>
+</a>	
+														</div>	
+														<h4><a href="https://ranveerbrar.com/the-many-facets-of-punjabi-cuisine-2/">The many facets of &#8216;Punjabi&#8217; cuisine</a></h4>
+
+													</div></div>
+																										<div class="col-md-6 col-sm-6"><div class="rb_recipe latest_post reveal">
+														<div class="rb_thumb_wrap"> 
+															<a href="https://ranveerbrar.com/best-out-of-waste/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="300" height="364" src="https://ranveerbrar.com/wp-content/uploads/2021/11/vlcsnap-2014-02-20-20h49m58s1101-300x364.png" class="attachment-homepage_recipe_slide size-homepage_recipe_slide wp-post-image" alt="Vlcsnap 2014 02 20 20h49m58s1101 300x364" loading="lazy"></div>
+</a>	
+														</div>	
+														<h4><a href="https://ranveerbrar.com/best-out-of-waste/">Best of the season..</a></h4>
+
+													</div></div>
+													</div>										</div>
+
+									</div>
+									
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<div class="weekrecipe_section">
+									<div class="ff_recipes_heading reveal">	
+										<img src="https://ranveerbrar.com/wp-content/uploads/2020/12/recipe-of-the-week-icon.svg" title="" alt=""><h3>Recipe of the Week</h3>
+									</div>
+									<div class="row">
+												
+																							<div class="wr_post rb_recipe reveal">
+													<div class="rb_thumb_wrap"> 
+														<iframe width="560" height="315" src="https://www.youtube.com/embed/aHOK9WtA_SY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>													</div>	
+													<h4><a href="https://ranveerbrar.com/recipes/christmas-special-eggless-gingerbread-house-%e0%a4%ac%e0%a4%bf%e0%a4%a8%e0%a4%be-%e0%a4%85%e0%a4%82%e0%a4%a1%e0%a5%87-%e0%a4%95%e0%a4%be-%e0%a4%9c%e0%a4%bf%e0%a4%82%e0%a4%9c%e0%a4%b0%e0%a4%ac%e0%a5%8d/">Get access to the Ranveer's Latest video on Christmas special Eggless Gingerbread House बिना अंडे का जिंजरब्रेड Gingerbread</a></h4>
+
+												</div>
+																					</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="quicklinks_section dot-grid-section">
+					<div class="container">
+						<div class="row">
+															<div class="col-lg-3 col-md-6 col-sm-6 col-6">
+									<div class="ql_inner_wrap rb_recipe reveal">
+										<div class="qlimage_wrap rb_thumb_wrap">
+											<a href="https://ranveerbrar.com/recipes/" ><img src="https://ranveerbrar.com/wp-content/uploads/2021/02/LOGO-galoutikebab.jpg" class="" title="" alt=""></a>
+										</div>
+										<h4 class=""><a href="https://ranveerbrar.com/recipes/" >Recipes that inspire me</a></h4>
+									</div>
+								</div>
+															<div class="col-lg-3 col-md-6 col-sm-6 col-6">
+									<div class="ql_inner_wrap rb_recipe reveal">
+										<div class="qlimage_wrap rb_thumb_wrap">
+											<a href="https://ranveerbrar.com/special-recipes/kids-special/" ><img src="https://ranveerbrar.com/wp-content/uploads/2021/02/ragie-chocolate-cake-3-scaled.jpg" class="" title="" alt=""></a>
+										</div>
+										<h4 class=""><a href="https://ranveerbrar.com/special-recipes/kids-special/" >Christmas special</a></h4>
+									</div>
+								</div>
+															<div class="col-lg-3 col-md-6 col-sm-6 col-6">
+									<div class="ql_inner_wrap rb_recipe reveal">
+										<div class="qlimage_wrap rb_thumb_wrap">
+											<a href="https://ranveerbrar.com/health-specials/healthy-breakfast/" ><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/Stay-Healthy.jpg" class="" title="" alt=""></a>
+										</div>
+										<h4 class=""><a href="https://ranveerbrar.com/health-specials/healthy-breakfast/" >Stay Healthy</a></h4>
+									</div>
+								</div>
+															<div class="col-lg-3 col-md-6 col-sm-6 col-6">
+									<div class="ql_inner_wrap rb_recipe reveal">
+										<div class="qlimage_wrap rb_thumb_wrap">
+											<a href="https://www.amazon.in/Come-into-Kitchen-Ranveer-Brar-ebook/dp/B01GTQHAFQ/ref=sr_1_5?dchild=1&keywords=ranveer+brar&qid=1608718533&sr=8-5" target='_blank'><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/Order-your-Copy-of.jpg" class="" title="" alt=""></a>
+										</div>
+										<h4 class=""><a href="https://www.amazon.in/Come-into-Kitchen-Ranveer-Brar-ebook/dp/B01GTQHAFQ/ref=sr_1_5?dchild=1&keywords=ranveer+brar&qid=1608718533&sr=8-5" target='_blank'>Order your Copy of Ranveer's Book</a></h4>
+									</div>
+								</div>
+													</div>
+
+					</div>
+				</section>
+										<section class="recipes_filter_section">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="recipes_filter_title reveal">
+											<h2>Recipes</h2>
+										</div>
+
+										<div class="recipes_filter_controls reveal">
+																						<span class="recipe_cat_link active_rc_link" id="recipe_catrecipe_veg" data-catid="recipe_veg">Veg
+											</span>
+											<span class="recipe_cat_link" id="recipe_catrecipe_nonveg" data-catid="recipe_nonveg">Non Veg
+											</span>
+											<span class="recipe_cat_link" id="recipe_catrecipe_vegan" data-catid="recipe_vegan">
+												Vegan
+											</span>
+											<span class="recipe_cat_link" id="recipe_cathealth-specials" data-catid="health-specials">
+												Health Specials
+											</span>
+											<span class="recipe_cat_link" id="recipe_catspecial-recipes" data-catid="special-recipes">Special Recipes
+											</span>
+										</div>
+									</div>
+									<div class="col-md-12">
+
+										<div id="overlay">
+											<div class="cv-spinner">
+												<span class="spinner">
+													<img src="https://ranveerbrar.com/wp-content/themes/ranveer-brar/img/pre-loader.svg" title="" alt="">
+												</span>
+											</div>
+										</div>
+
+										<div class="recipes_filter_results">
+											<div class="row">			
+																											<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/%e0%a4%95%e0%a5%81%e0%a4%b0%e0%a4%95%e0%a5%81%e0%a4%b0%e0%a4%be-%e0%a4%86%e0%a4%b2%e0%a5%82-%e0%a4%95%e0%a4%be-%e0%a4%a8%e0%a4%be%e0%a4%b6%e0%a5%8d%e0%a4%a4%e0%a4%be-crispy-potato-pancake-special-pota/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/12/aloo-cheela-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Aloo Cheela 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/12/aloo-cheela-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/12/aloo-cheela-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/12/aloo-cheela-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/%e0%a4%95%e0%a5%81%e0%a4%b0%e0%a4%95%e0%a5%81%e0%a4%b0%e0%a4%be-%e0%a4%86%e0%a4%b2%e0%a5%82-%e0%a4%95%e0%a4%be-%e0%a4%a8%e0%a4%be%e0%a4%b6%e0%a5%8d%e0%a4%a4%e0%a4%be-crispy-potato-pancake-special-pota/">कुरकुरा आलू का नाश्ता Crispy Potato Pancake special Potato snack recipe</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/christmas-special-eggless-gingerbread-house-%e0%a4%ac%e0%a4%bf%e0%a4%a8%e0%a4%be-%e0%a4%85%e0%a4%82%e0%a4%a1%e0%a5%87-%e0%a4%95%e0%a4%be-%e0%a4%9c%e0%a4%bf%e0%a4%82%e0%a4%9c%e0%a4%b0%e0%a4%ac%e0%a5%8d/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/12/Ginger-Bread-cookies-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Ginger Bread Cookies 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/12/Ginger-Bread-cookies-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/12/Ginger-Bread-cookies-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/12/Ginger-Bread-cookies-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/christmas-special-eggless-gingerbread-house-%e0%a4%ac%e0%a4%bf%e0%a4%a8%e0%a4%be-%e0%a4%85%e0%a4%82%e0%a4%a1%e0%a5%87-%e0%a4%95%e0%a4%be-%e0%a4%9c%e0%a4%bf%e0%a4%82%e0%a4%9c%e0%a4%b0%e0%a4%ac%e0%a5%8d/">Christmas special Eggless Gingerbread House बिना अंडे का जिंजरब्रेड Gingerbread</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/chilled-kiwi-tomato-soup-with-popcorn-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/02/Chilled-Kiwi-Tomato-with-Popcorn-1-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Chilled Kiwi Tomato With Popcorn 1 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/02/Chilled-Kiwi-Tomato-with-Popcorn-1-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/02/Chilled-Kiwi-Tomato-with-Popcorn-1-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/02/Chilled-Kiwi-Tomato-with-Popcorn-1-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/chilled-kiwi-tomato-soup-with-popcorn-2/">Chilled Kiwi &#038; Tomato Soup with Popcorn</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/bhindi-dahiwali-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/02/bhindi-dahiwali-1-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Bhindi Dahiwali 1 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/02/bhindi-dahiwali-1-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/02/bhindi-dahiwali-1-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/02/bhindi-dahiwali-1-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/bhindi-dahiwali-2/">Bhindi Dahiwali</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/bedmi-poori-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/02/bedmi-poori-1-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Bedmi Poori 1 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/02/bedmi-poori-1-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/02/bedmi-poori-1-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/02/bedmi-poori-1-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/bedmi-poori-2/">Bedmi Poori</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/apple-jalebi-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/02/apple-jalebi-1-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Apple Jalebi 1 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/02/apple-jalebi-1-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/02/apple-jalebi-1-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/02/apple-jalebi-1-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/apple-jalebi-2/">Apple Jalebi</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/arvi-methi-cutlet-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/02/arvi-methi-cutlet-1-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Arvi Methi Cutlet 1 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/02/arvi-methi-cutlet-1-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/02/arvi-methi-cutlet-1-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/02/arvi-methi-cutlet-1-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/arvi-methi-cutlet-2/">Arvi Methi Cutlet</a></h4>
+
+														</div></div>
+																												<div class="col-md-3"><div class="rc_post rb_recipe reveal">
+															<div class="rc_thumb_wrap rb_thumb_wrap"> 
+															
+								<a href="https://ranveerbrar.com/recipes/akhrot-kebabs-2/" rel="bookmark" class="post-thumbnail"><div class="bialty-container"><img width="310" height="310" src="https://ranveerbrar.com/wp-content/uploads/2021/02/Akhrot-Kabab-1-310x310.jpg" class="attachment-recipe_square_thumb size-recipe_square_thumb wp-post-image" alt="Akhrot Kabab 1 310x310" loading="lazy" srcset="https://ranveerbrar.com/wp-content/uploads/2021/02/Akhrot-Kabab-1-310x310.jpg 310w, https://ranveerbrar.com/wp-content/uploads/2021/02/Akhrot-Kabab-1-150x150.jpg 150w, https://ranveerbrar.com/wp-content/uploads/2021/02/Akhrot-Kabab-1-110x110.jpg 110w" sizes="(max-width: 310px) 100vw, 310px"></div>
+</a>
+	
+															</div>	
+															<h4><a href="https://ranveerbrar.com/recipes/akhrot-kebabs-2/">Akhrot Kebabs</a></h4>
+
+														</div></div>
+														</div>												
+											</div>
+										<div class="view_all_wrap reveal">
+													<a href="https://ranveerbrar.com/recipes/"  class="hvr-float">View All Recipes</a>	
+												</div>
+
+										</div>
+									</div>
+								</div>
+							</section>
+												<script>
+							jQuery('.recipes_filter_controls .recipe_cat_link').click(function(){
+								var cat_id = $(this).data("catid");
+			//alert(cat_id);
+			home_recipe_filter(cat_id);
+		});
+	</script>
+	<script type="text/javascript">
+		function home_recipe_filter(cat_id){
+			$("#overlay").fadeIn(300);　
+			var ajaxurl = 'https://ranveerbrar.com/wp-content/themes/ranveer-brar/homepage_recipes_ajax.php';
+			var cat_id = cat_id;
+			$.ajax({
+				type: 'POST',
+				url: ajaxurl,
+				data: {cat_id: cat_id},
+				success: function(data) {
+					$("#overlay").fadeOut(0);
+					$('.recipes_filter_section .recipes_filter_results').html(data);
+				},
+				error: function(data) {
+					console.log('Error');
+				},
+			});
+		}
+	</script>
+	
+	</div><!-- #content -->
+
+	<footer id="colophon" class="site-footer">
+	<div class="top_footer">
+	<div class="top-container container">	
+		<div class="row">
+			<div class="col-lg-5 col-md-12">
+			<div class="footer_img_wrap">
+			<img src="https://ranveerbrar.com/wp-content/uploads/2020/12/Image-about-me-ranveer-brar.png">	
+				</div>	
+			</div>
+			<div class="col-lg-7 col-md-12">
+			<div class="top_footer_right">	
+			<div class="abt_content_wrap">
+			<h2>About Me</h2>	
+			<p>Passion for food has driven me to every nook and corner of the world. From becoming the youngest executive chef at a five star hotel, to hosting my own cooking shows, it is my love for cooking that has got this far. Through this website, I intend to take you on a culinary journey, exploring new places, cultures and flavours. Let’s engage, exchange and evolve our skills and taste buds.</p>
+	
+			</div>
+			<div class="abt_links_wrap">
+			<a href="/cdn-cgi/l/email-protection#45262a2b312426310537242b33202037273724376b262a28" class="hvr-forward"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/green-arrow.svg">Email us</a>
+			<a href="https://ranveerbrar.com/submit-recipe/" class="hvr-forward"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/green-arrow.svg">Submit a Recipe</a>
+			<a href="https://ranveerbrar.com/blog/" class="hvr-forward"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/green-arrow.svg">FoodFables</a>
+			</div>
+			<div class="abt_books_wrap">
+			<h3>My books on Amazon.com</h3>	
+							<div class="book_wrap">
+	<a href="https://www.amazon.in/Traditional-Twist-PB-Ranveer-Brar/dp/8179919218/ref=sr_1_1?dchild=1&keywords=ranveer+brar&qid=1608718533&sr=8-1" target="_blank"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/amazon-book-thumbnail1.png" class=""></a>
+	</div>
+					<div class="book_wrap">
+	<a href="https://www.amazon.in/Come-into-Kitchen-Ranveer-Brar-ebook/dp/B01GTQHAFQ/ref=sr_1_5?dchild=1&keywords=ranveer+brar&qid=1608718533&sr=8-5" target="_blank"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/amazon-bookthumbnail2.png" class=""></a>
+	</div>
+				</div>	
+				<div class="social_wrap">
+				<h3>Follow & Connect</h3>	
+<a href="https://www.instagram.com/ranveer.brar/" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/instagram-icon.svg"></a>
+<a href="https://www.linkedin.com/in/ranveerbrar/" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/linkedin-icon.svg"></a>
+<a href="https://www.facebook.com/RanveerBrar" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/facebook-icon.svg"></a>
+<a href="https://in.pinterest.com/ChefRanveer/_created/" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/pinterest-icon.svg"></a>
+<a href="https://www.youtube.com/c/ChefRanveer" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/youtube-icon.svg"></a>
+<a href="https://twitter.com/ranveerbrar" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/twitter-icon.svg"></a>
+<a href="https://en.wikipedia.org/wiki/Ranveer_Brar" target="_blank" class="hvr-float"><img src="https://ranveerbrar.com/wp-content/uploads/2020/12/wikipedia-icon.svg"></a>
+</div>
+				
+			</div>
+		</div>
+		</div>
+		</div>	
+		</div>
+		<div class="bottom_footer_wrap">
+		<div class="bottom_footer dot-grid-section">
+	<div class="container">	
+		<div class="row">
+		
+<div class="col-lg-8 col-md-12">
+		<div class="bottom_footer_left">	
+		<div class="footer_top_menu_wrap">
+		<div id="footer-top" class="footer-top">
+							<nav id="site-navigation" class="main-navigation">
+								<div class="menu-footer-top-container"><ul id="footer-top-menu" class="menu"><li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-134"><a href="https://ranveerbrar.com/recipes">Recipes</a></li>
+<li id="menu-item-129" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-129"><a href="https://ranveerbrar.com/about/">About</a></li>
+<li id="menu-item-1775" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1775"><a href="https://ranveerbrar.com/shop/">Shop</a></li>
+<li id="menu-item-5001" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5001"><a href="https://ranveerbrar.com/user-recipes/">User Recipes</a></li>
+<li id="menu-item-130" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130"><a href="https://ranveerbrar.com/blog/">Blog</a></li>
+<li id="menu-item-131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131"><a href="https://ranveerbrar.com/press/">Press</a></li>
+<li id="menu-item-5002" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5002"><a href="https://ranveerbrar.com/contact/">Contact Us</a></li>
+</ul></div>							</nav><!-- #site-navigation -->
+						</div>	
+		
+			</div>	
+			<div class="foooter_bottom_menu_wrap">
+			<div class="row">
+		<div class="col-md-4">
+			<div class="footer_bottom_menu footer_bottom_left">
+			
+				<div class="menu-footer-left-container"><ul id="footer-bottom-left" class="menu"><li id="menu-item-1756" class="menu-item menu-item-type-taxonomy menu-item-object-recipe-tag menu-item-1756"><a href="https://ranveerbrar.com/recipe-tag/recipe-of-the-week/">Recipe of the Week</a></li>
+<li id="menu-item-1779" class="menu-item menu-item-type-taxonomy menu-item-object-special-recipes menu-item-1779"><a href="https://ranveerbrar.com/special-recipes/monsoon-recipes/">Monsoon Recipes</a></li>
+<li id="menu-item-1780" class="menu-item menu-item-type-taxonomy menu-item-object-special-recipes menu-item-1780"><a href="https://ranveerbrar.com/special-recipes/party-snacks/">Party Snacks</a></li>
+<li id="menu-item-1781" class="menu-item menu-item-type-taxonomy menu-item-object-special-recipes menu-item-1781"><a href="https://ranveerbrar.com/special-recipes/summer-recipes/">Summer Recipes</a></li>
+<li id="menu-item-1782" class="menu-item menu-item-type-taxonomy menu-item-object-special-recipes menu-item-1782"><a href="https://ranveerbrar.com/special-recipes/festival-special/">Festival Special</a></li>
+</ul></div>	
+			</div>
+				</div>
+				<div class="col-md-4">
+					<div class="footer_bottom_menu footer_bottom_center">
+			<div class="menu-footer-center-container"><ul id="footer-bottom-center" class="menu"><li id="menu-item-1840" class="menu-item menu-item-type-taxonomy menu-item-object-recipe_veg menu-item-1840"><a href="https://ranveerbrar.com/recipe_veg/breakfast/">Veg Breakfast</a></li>
+<li id="menu-item-1841" class="menu-item menu-item-type-taxonomy menu-item-object-recipe_veg menu-item-1841"><a href="https://ranveerbrar.com/recipe_veg/main-course/">Veg Main Course</a></li>
+<li id="menu-item-1842" class="menu-item menu-item-type-taxonomy menu-item-object-recipe_nonveg menu-item-1842"><a href="https://ranveerbrar.com/recipe_nonveg/noodles-and-pastas/">Noodles and Pastas</a></li>
+<li id="menu-item-1843" class="menu-item menu-item-type-taxonomy menu-item-object-recipe_nonveg menu-item-1843"><a href="https://ranveerbrar.com/recipe_nonveg/snacks/">Non Veg Snacks</a></li>
+<li id="menu-item-1845" class="menu-item menu-item-type-taxonomy menu-item-object-recipe_vegan menu-item-1845"><a href="https://ranveerbrar.com/recipe_vegan/salads/">Vegan Salads</a></li>
+</ul></div>	
+			</div>
+				</div>
+				<div class="col-md-4">
+					<div class="footer_bottom_menu footer_bottom_right">
+			<div class="menu-footer-right-container"><ul id="footer-bottom-right" class="menu"><li id="menu-item-1783" class="menu-item menu-item-type-taxonomy menu-item-object-health-specials menu-item-1783"><a href="https://ranveerbrar.com/health-specials/healthy-breakfast/">Healthy Breakfast</a></li>
+<li id="menu-item-1784" class="menu-item menu-item-type-taxonomy menu-item-object-health-specials menu-item-1784"><a href="https://ranveerbrar.com/health-specials/healthy-desserts/">Healthy Desserts</a></li>
+<li id="menu-item-1785" class="menu-item menu-item-type-taxonomy menu-item-object-health-specials menu-item-1785"><a href="https://ranveerbrar.com/health-specials/healthy-dinner/">Healthy Dinner</a></li>
+<li id="menu-item-1786" class="menu-item menu-item-type-taxonomy menu-item-object-health-specials menu-item-1786"><a href="https://ranveerbrar.com/health-specials/healthy-drinks/">Healthy Drinks</a></li>
+<li id="menu-item-1787" class="menu-item menu-item-type-taxonomy menu-item-object-health-specials menu-item-1787"><a href="https://ranveerbrar.com/health-specials/healthy-salads/">Healthy Salads</a></li>
+<li id="menu-item-1788" class="menu-item menu-item-type-taxonomy menu-item-object-health-specials menu-item-1788"><a href="https://ranveerbrar.com/health-specials/healthy-snacks/">Healthy Snacks</a></li>
+</ul></div>	
+			</div>
+				</div>
+			</div>
+			</div>	
+			</div>
+			</div>
+
+ 
+		<div class="col-lg-4 col-md-12">
+			<div class="footer_logo_wrap">
+			<img class="footer_logo" src="https://ranveerbrar.com/wp-content/uploads/2020/12/logo-enhanced-footer.png">
+				<img class="indian_art" src="https://ranveerbrar.com/wp-content/uploads/2020/12/indian-art.svg">
+			</div>
+			</div>		
+		</div>
+		</div>
+		</div>
+		<div class="footer_bottom_strip">
+		<div class="container">
+		<p>© 2021 All Rights Reserved. <span><a target="_blank" href="https://colorwhistle.com/">Website designed and developed by ColorWhistle</a></span></p>	
+		</div>	
+		</div>
+			</div>
+		
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<div id="qlwapp" class="qlwapp-free qlwapp-button qlwapp-bottom-left qlwapp-all qlwapp-rounded">
+  <div class="qlwapp-container">
+        <a class="qlwapp-toggle" data-action="open" data-phone="919108813581" data-message="" href="javascript:void(0);" target="_blank">
+              <i class="qlwapp-icon qlwapp-whatsapp-icon"></i>
+            <i class="qlwapp-close" data-action="close">&times;</i>
+          </a>
+  </div>
+</div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type='text/javascript' src='https://ranveerbrar.com/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.7' id='regenerator-runtime-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/ranveerbrar.com\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.4.1' id='contact-form-7-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js?ver=2.2' id='slider-tiny-carousel-js-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/themes/ranveer-brar/js/navigation.js?ver=20151215' id='rb-navigation-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/themes/ranveer-brar/js/skip-link-focus-fix.js?ver=20151215' id='rb-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-content/plugins/wp-whatsapp-chat/assets/frontend/js/frontend.js?ver=021fa4de1c6ea4db860e85f702082b24' id='qlwapp-js'></script>
+<script type='text/javascript' src='https://ranveerbrar.com/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "email": "mailto:contact@ranveerbrar.com/",
+  "image": "https://ranveerbrar.com/wp-content/uploads/2020/12/Image-about-me-ranveer-brar.png",
+  "jobTitle": "Executive Chef",
+  "name": "Ranveer Brar",
+  "description":"Passion for food has driven Ranveer to every nook and corner of the world. From becoming the youngest executive chef at a five star hotel, to hosting his own cooking shows, it is the love for cooking that has got him this far. Through this website, he intend to take you on a culinary journey, exploring new places, cultures and flavours. Let’s engage, exchange and evolve our skills and taste buds with Ranveer Brar.",	
+  "url": "https://ranveerbrar.com/",
+  "sameAs": [
+  "https://www.instagram.com/ranveer.brar/",
+  "https://www.youtube.com/c/ChefRanveer",
+  "https://www.facebook.com/RanveerBrar",
+  "https://twitter.com/ranveerbrar",
+  "https://www.linkedin.com/in/ranveerbrar/",
+  "https://in.pinterest.com/ChefRanveer/_created/",
+  "https://en.wikipedia.org/wiki/Ranveer_Brar"
+  ]
+}
+</script>
+
+</body>
+</html>
+																						
